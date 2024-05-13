@@ -13,8 +13,8 @@ type TestData struct {
 }
 
 func main() {
-	arr := RandomizeArray(10000)
-	td := SelectionSort(arr)
+	arr := RandomizeArray(1000000)
+	td := ShellSort(arr, 1000000)
 	fmt.Println(arr)
 	fmt.Println(td)
 }
@@ -26,9 +26,6 @@ func RandomizeArray(size int) []int {
 	}
 	return arr
 }
-
-//{146324 120005 1.0404ms}
-//{9999 50004999 56.0549ms}
 
 func ShellSort(data []int, size int) TestData {
 	start := time.Now()
@@ -59,9 +56,9 @@ func SelectionSort(data []int) TestData {
 			testData.CompareNum++
 			if data[j] < data[minIndex] {
 				minIndex = j
+				testData.SwapNum++
 			}
 		}
-		testData.SwapNum++
 		di := data[i]
 		data[i] = data[minIndex]
 		data[minIndex] = di
